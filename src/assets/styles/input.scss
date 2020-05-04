@@ -1,0 +1,67 @@
+/** @format */
+
+.form-group {
+	width: 100%;
+	margin: 15px;
+	& > input {
+		max-width: 100%;
+		width: 350px;
+		height: 50px;
+		padding-left: 30px;
+		padding-right: 80px;
+		border-radius: 10px;
+		outline: none;
+		border: 1px solid darken($color: $grey-100, $amount: 10);
+		font-size: 0.6em;
+		//box-shadow: 1px 1px 5px 2px $grey-100;
+		&:focus {
+			border: 2px solid lighten($color: $text-primary, $amount: 20);
+		}
+	}
+	& > i {
+		position: relative;
+		left: -50px;
+        color: darken($color: $grey-100, $amount: 10);
+        font-size: .8em;
+	}
+}
+
+form h2 {
+	font-family: 'Lato', sans-serif;
+	margin-top: 50px;
+	font-size: 1em;
+}
+
+.signlink {
+	font-size: .8em;
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: $text-primary;
+	
+}
+
+@media screen and (min-width: 576px) {
+	.form-group {
+		width: 100%;
+		margin: 20px;
+		& > input {
+			max-width: 100%;
+			width: 450px;
+			height: 60px;
+		}
+	}
+	form h2 {
+		font-size: 1.5em;
+	}
+}
+
+@media screen and (min-width: 768px) {
+    
+}
+
+@media screen and (min-width: 992px) {
+    
+}

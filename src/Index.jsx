@@ -1,12 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './assets/styles/app.scss'
+import './assets/styles/app.scss';
+import App from './pages/App'
 
-
-const App = () => {
-    return (
-        <h1>hello</h1>
-    )
-}
 
 ReactDOM.render(<App />, document.querySelector('#root'))
