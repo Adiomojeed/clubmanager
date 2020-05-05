@@ -27,12 +27,11 @@ h2 {
 
 .container {
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 }
 
 .row {
 	width: 100%;
-	height: 100%;
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -58,9 +57,17 @@ h2 {
 		& > h2 {
 			color: $text-primary;
 			margin-top: 50px;
-			
 		}
 	}
+}
+
+.col-4 {
+	max-width: 33.333%;
+	flex: 0 0 33.333%;
+	width: 33.333%;
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .col-6 {
@@ -82,8 +89,8 @@ h2 {
 }
 
 .vh-100 {
-	max-height: 100%;
 	height: 100vh;
+	max-height: 100%;
 }
 .justify-content-center {
 	justify-content: center;
@@ -92,7 +99,9 @@ h2 {
 .align-items-center {
 	align-items: center;
 }
-
+.pos--rel {
+	position: relative;
+}
 .hero-bg {
 	background-image: linear-gradient(
 			rgba(250, 250, 250, 0.4),
@@ -113,7 +122,7 @@ h2 {
 	z-index: 100;
 	& > h2 {
 		margin-top: 10px;
-		font-size: .7em;
+		font-size: 0.7em;
 	}
 	& > img {
 		width: 100px;
@@ -122,43 +131,51 @@ h2 {
 
 .benefits-right {
 	border-left: 2px solid grey;
-	padding: 15px 0;
-	padding-left: 30px;
-	margin-left: auto;
-	margin-right: auto;
-	box-shadow: 1px 1px 15px 1px $grey-100;
+	padding: 30px;
+	margin-left: 20px;
+	margin-right: 20px;
+	
 	& > i {
 		font-size: 50px;
-		color: $text-red;
+		text-align: center;
+		width: 100%;
 	}
 	& > h4 {
 		line-height: 0;
+		text-align: center;
 	}
 	& > p {
 		font-size: 0.7em;
-		width: 70%;
+		width: 100%;
+		text-align: center;
 	}
 }
 
-.benefits-left {
-	border-left: 2px solid grey;
-	padding: 15px 0;
-	padding-left: 30px;
-	margin-left: auto;
-	margin-right: auto;
+.shadow {
 	box-shadow: 1px 1px 15px 1px $grey-100;
-	margin-bottom: 20px;
-	& > i {
-		font-size: 50px;
-		color: $text-red;
-	}
-	& > h4 {
-		line-height: 0;
-	}
-	& > p {
-		font-size: 0.7em;
-		width: 70%;
-	}
+}
+
+.mb {
+	margin-bottom: 50px;
+}
+.ml {
+	margin-left: 50px;
+}
+
+.mx {
+	
+}
+
+.text-warning {
+	color: #fbc531;
+}
+
+.text-error {
+	color: #e74c3c;
+}
+
+.text-success {
+	color: green;
 }
 
 .py-2 {
@@ -173,7 +190,7 @@ h2 {
 	top: calc(0% - 1000px / 2 + 333.52px);
 	border-radius: 50%;
 	background: lighten($color: $bg-light, $amount: 30);
-	border: 5px solid lighten($color: $bg-primary, $amount: 30)
+	border: 5px solid lighten($color: $bg-primary, $amount: 30);
 }
 .overflow {
 	overflow: hidden;
@@ -186,6 +203,10 @@ h2 {
 
 .text-primary {
 	color: $text-primary;
+}
+
+.text-light {
+	color: $text-light;
 }
 
 @media screen and (min-width: 576px) {
@@ -203,7 +224,7 @@ h2 {
 }
 
 @media screen and (min-width: 768px) {
-    .logo {
+	.logo {
 		width: 250px;
 	}
 	.vh-sm-80 {
@@ -242,55 +263,25 @@ h2 {
 
 @media screen and (min-width: 992px) {
 	.col-sm-12 {
-		max-width: 50%;
+		max-width: 33.333%;
 	}
-    .benefits-right {
-		border-left: 2px solid grey;
-		padding: 0;
-		padding-left: 30px;
-		margin: 0;
+	.shadow-lg-none {
 		box-shadow: 0 0 0 0;
-		& > i {
-			font-size: 50px;
-			color: $text-red;
-		}
-		& > h4 {
-			line-height: 0;
-		}
-		& > p {
-			font-size: 0.7em;
-			width: 70%;
-		}
 	}
-	
-	.benefits-left {
-		border-right: 2px solid grey;
+	.benefits-right {
 		border-left: 0;
-		padding-right: 30px;
-		margin-left: auto;
-		margin-right: 0;
-		text-align: right;
-		box-shadow: 0 0 0 0;
+		margin-left: 10px;
+		margin-right: 10px;
 		& > i {
-			font-size: 50px;
-			margin-left: auto;
-			color: $text-red;
-		}
-		& > h4 {
-			line-height: 0;
+			font-size: 70px;
 		}
 		& > p {
 			font-size: 0.7em;
-			width: 70%;
-			margin-left: auto;
 		}
-	}
-	.offset-6 {
-		margin-left: 50%;
 	}
 	.logo-reg {
-		top: 80px;
-		left: 60px;
+		top: 60px;
+		left: 50px;
 		& > img {
 			width: 150px;
 		}
@@ -303,6 +294,6 @@ h2 {
 		top: calc(0% - 1300px / 2 + 333.52px);
 		border-radius: 50%;
 		background: lighten($color: $bg-light, $amount: 30);
-		border: 5px solid lighten($color: $bg-primary, $amount: 30)
+		border: 5px solid lighten($color: $bg-primary, $amount: 30);
 	}
 }

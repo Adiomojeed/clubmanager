@@ -29,26 +29,44 @@ const LandingPage = () => {
 			<div>
 				<h2>BENEFITS</h2>
 			</div>
-			<div className="row">
-				<div className="col-sm-12 col-6 offset-6 py-2">
-					<div className="benefits-right">
-						<i className="fab fa-accessible-icon"></i>
-						<h4>Accessible</h4>
+			<div className="row mb">
+				<div className="col-sm-12 col-4 py-2">
+					<div className="benefits-right shadow shadow-lg-none">
+						<i className="fab fa-accessible-icon text-error"></i>
+						<h4>Accessibility</h4>
 						<p>
 							This application is easily accessible to any Local
-							Branch ready to use it
+							Branch ready to use it. Built to ease off stress of
+							documentation.
 						</p>
 					</div>
 				</div>
-				<div className="col-sm-12 col-6 py-2">
-					<div className="benefits-left">
-						<i className="fab fa-accessible-icon"></i>
-						<h4>Accessible</h4>
+				<div className="col-sm-12 col-4 py-2">
+					<div className="benefits-right shadow shadow-lg-none">
+						<i className="fas fa-shield-alt text-success"></i>
+						<h4>Security</h4>
 						<p>
-							This application is easily accessible to any Local
-							Branch ready to use it
+							Worry no more for the security of details of your
+							members. We have got you covered to save your
+							registers on the cloud.
 						</p>
 					</div>
+				</div>
+				<div className="col-sm-12 col-4 py-2">
+					<div className="benefits-right shadow shadow-lg-none">
+						<i className="fas fa-check-double text-warning"></i>
+						<h4>Ease of Access</h4>
+						<p>
+							With just a click on your devices, you can add and
+							view all members of your branch, their roles and
+							details.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div className="row">
+				<div className="col mb justify-content-center">
+					<small className='text-center'>DSC Kwara State University &reg; </small>
 				</div>
 			</div>
 		</div>

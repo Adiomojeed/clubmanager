@@ -1,0 +1,219 @@
+/** @format */
+
+.col-9 {
+	max-width: 100%;
+	flex: 0 0 100%;
+	background-color: $bg-light;
+	width: 100%;
+	position: relative;
+	margin-left: auto;
+}
+
+.col-3 {
+	max-width: 100%;
+	flex: 0 0 100%;
+	padding: 0;
+	width: 100%;
+	position: relative;
+	z-index: 100;
+	position: fixed;
+	display: none;
+
+	& > .siderow {
+		padding: 0px;
+
+		width: 50%;
+		background-color: darken($color: $bg-primary, $amount: 5);
+
+		& > .close {
+			padding-top: 20px;
+			padding-right: 20px;
+			width: 100%;
+			display: flex;
+			justify-content: flex-end;
+		}
+		& > .nav-list {
+			padding-top: 0px;
+			
+			& > .nav-item {
+				list-style-type: none;
+				font-size: 0.7em;
+				color: $text-light;
+                width: 100%;
+                background-color: lighten($color: $bg-primary, $amount: 2);
+				border-bottom: 2px solid darken($color: $bg-primary, $amount: 5);
+				padding: 10px;
+				& > P {
+					display: inline-block;
+				}
+            }
+            & > .sign-out {
+                margin-top: 120px;
+                & > P {
+					padding-left: 20px;
+				}
+            }
+		}
+		& > .avatar-block {
+			padding: 40px 20px 0 20px;
+			& > div {
+				display: flex;
+				justify-content: center;
+				& > img {
+					background-color: $bg-light;
+					padding: 10px;
+					border-radius: 50%;
+					width: 120px;
+				}
+			}
+			& > h5 {
+				margin-top: 0;
+			}
+		}
+	}
+}
+
+.sidebar__icon {
+	padding: 0 20px;
+}
+.animenav {
+	background-color: rgba(36, 34, 34, 0.4);
+	animation: nav 0.5s forwards;
+}
+.closeanime {
+	animation: navs 0.5s forwards;
+}
+.siderownav {
+	animation: siderow 0.5s forwards;
+}
+.closesiderow {
+	animation: siderows 0.5s forwards;
+}
+@keyframes nav {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes navs {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+@keyframes siderow {
+	from {
+		width: 0%;
+	}
+	to {
+		width: 50%;
+	}
+}
+@keyframes siderows {
+	from {
+		width: 50%;
+	}
+	to {
+		width: 0%;
+	}
+}
+.nav {
+	display: flex;
+	justify-content: flex-start;
+	height: 80px;
+	position: sticky;
+	padding: 0 30px;
+	top: 0;
+	width: 100%;
+	align-items: center;
+	background-color: #fff;
+	box-shadow: 0px 0px 10px 1px rgb(177, 175, 175);
+	z-index: 1;
+	& > img {
+		width: 70px;
+		margin-right: 20px;
+		font-weight: bold;
+	}
+	& > div {
+		margin-left: auto;
+		font-size: 30px;
+		& > span {
+			width: 30px;
+			height: 50px;
+			border: 1px solid $grey-100;
+			color: darken($color: $grey-100, $amount: 10);
+			margin-right: 15px;
+			padding: 5px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+		}
+		& > i {
+			color: $text-primary;
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.col-3 {
+		& > .siderow {
+			width: 40%;
+		}
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.col-9 {
+		max-width: 80%;
+		flex: 0 0 80%;
+		background-color: $bg-light;
+		width: 80%;
+		position: relative;
+		margin-left: auto;
+	}
+
+	.col-3 {
+		max-width: 100%;
+		flex: 0 0 20%;
+		//background-color: rgba(36, 34, 34, 0.5);
+		background-color: darken($color: $bg-primary, $amount: 5);
+		padding: 0;
+		width: 20%;
+		position: relative;
+		position: fixed;
+		display: block;
+		opacity: 1;
+		& > .siderow {
+			width: 100%;
+			& > .close {
+				display: none;
+			}
+			& > .nav-list {
+				margin-top: 30px;
+				width: 100%;
+				padding-top: 0px;
+				& > .nav-item {
+					font-size: 0.7em;
+					padding: 5px;
+				}
+			}
+			& > .avatar-block {
+				padding-top: 60px;
+			}
+		}
+	}
+	@keyframes nav {
+	}
+	.nav {
+		height: 70px;
+		padding: 0 30px;
+		& > div {
+			& > i {
+				display: none;
+			}
+		}
+	}
+}

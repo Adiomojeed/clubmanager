@@ -10,14 +10,15 @@
 	color: $text-light;
     cursor: pointer;
     outline: 0;
-	&:hover {
-		background-color: darken($color: $bg-primary, $amount: 4);
+	&:hover, &:focus {
+        background-color: darken($color: $bg-primary, $amount: 4);
+        outline: none;
 	}
 }
 
 .btn-submit {
 	width: 350px;
-	height: 60px;
+	height: 50px;
     border-radius: 10px;
     font-size: .8em;
 }
