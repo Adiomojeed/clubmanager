@@ -79,10 +79,10 @@ h2 {
 	flex-wrap: wrap;
 }
 
-.col-sm-12 {
+.col-sm-6 {
 	max-width: 100%;
-	flex: 0 0 100%;
-	width: 100%;
+	flex: 0 0 50%;
+	width: 50%;
 	position: relative;
 	display: flex;
 	flex-wrap: wrap;
@@ -134,7 +134,6 @@ h2 {
 	padding: 30px;
 	margin-left: 20px;
 	margin-right: 20px;
-	
 	& > i {
 		font-size: 50px;
 		text-align: center;
@@ -150,6 +149,43 @@ h2 {
 		text-align: center;
 	}
 }
+.card {
+	border-left: 2px solid grey;
+
+	width: 100%;
+	padding: 15px;
+	margin-left: 20px;
+	margin-right: 20px;
+	& > div {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		& > img {
+			width: 70px;
+		}
+		& > span {
+			font-size: 0.8em;
+			font-weight: bold;
+			text-align: right;
+		}
+		& > p {
+			font-size: 0.7em;
+			width: 100%;
+			color: darken($color: $grey-100, $amount: 20);
+			margin-bottom: 0;
+		}
+	}
+
+	& > h4 {
+		line-height: 0;
+	}
+	& > p {
+		font-size: 0.7em;
+		width: 100%;
+		color: darken($color: $grey-100, $amount: 20);
+		margin-bottom: 0;
+	}
+}
 
 .shadow {
 	box-shadow: 1px 1px 15px 1px $grey-100;
@@ -160,10 +196,6 @@ h2 {
 }
 .ml {
 	margin-left: 50px;
-}
-
-.mx {
-	
 }
 
 .text-warning {
@@ -207,6 +239,18 @@ h2 {
 
 .text-light {
 	color: $text-light;
+}
+
+.alert {
+	background-color: lighten($color: $bg-primary, $amount: 25);
+	opacity: 0.5;
+	margin-right: 10px;
+	margin-top: 40px;
+	width: 300px;
+	padding: 1px 20px;
+	border-radius: 10px;
+	font-size: 0.8em;
+	color: green;
 }
 
 @media screen and (min-width: 576px) {
@@ -259,11 +303,41 @@ h2 {
 		left: calc(50% - 500px / 2 - 463.52px);
 		top: calc(0% - 1400px / 2 + 333.52px);
 	}
+	.card {
+		& > div {
+			justify-content: flex-start;
+			& > span {
+				font-size: 0.8em;
+				margin-left: 5px;
+			}
+			& > p {
+				font-size: 0.6em;
+			}
+		}
+
+		& > h4 {
+			line-height: 0;
+		}
+		& > p {
+			font-size: 0.7em;
+			width: 100%;
+			color: darken($color: $grey-100, $amount: 20);
+			margin-bottom: 0;
+		}
+	}
 }
 
 @media screen and (min-width: 992px) {
-	.col-sm-12 {
+	.col-sm-4 {
 		max-width: 33.333%;
+	}
+	.col-lg-4 {
+		max-width: 100%;
+		flex: 0 0 25%;
+		width: 25%;
+		position: relative;
+		display: flex;
+		flex-wrap: wrap;
 	}
 	.shadow-lg-none {
 		box-shadow: 0 0 0 0;
@@ -278,6 +352,23 @@ h2 {
 		& > p {
 			font-size: 0.7em;
 		}
+	}
+	.card {
+		& > div {
+			justify-content: flex-start;
+			& > span {
+				font-size: 0.8em;
+				margin-left: 5px;
+			}
+			& > p {
+				font-size: 0.7em;
+			}
+		}
+
+		& > h4 {
+			line-height: 0;
+		}
+
 	}
 	.logo-reg {
 		top: 60px;

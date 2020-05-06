@@ -1,8 +1,12 @@
 /** @format */
 
 import React from "react";
+import { withRouter } from "react-router-dom";
+import { withAlert } from "react-alert";
 import RegisterationContainer from "./RegisterationContainer";
+import * as ROUTES from "../constants/Routes";
 import { SignInLink } from "./SignIn";
+import { withFirebase } from "./Firebase/index";
 
 const INITIAL_STATE = {
 	name: "",
@@ -13,7 +17,7 @@ const INITIAL_STATE = {
 	error: null,
 };
 
-class SignUpPage extends React.Component {
+class SignUpFormBase extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -29,11 +33,46 @@ class SignUpPage extends React.Component {
 	}
 
 	onHandleSubmit(e) {
+		const { email, passwordOne, name, country } = this.state;
+		this.props.firebase.auth
+			.createUserWithEmailAndPassword(email, passwordOne)
+			.then((authUser) => {
+				this.props.firebase.db
+					.ref(`users/${authUser.user.uid}`)
+					.set({ name, country, email });
+				this.props.firebase.db
+					.ref(`members/${authUser.user.uid}`)
+					//.set({ name, country, email });
+			})
+			.then(() => {
+				this.setState({ ...INITIAL_STATE });
+				this.props.history.push(ROUTES.DASHBOARD);
+			})
+			.then(() => {
+				location.reload();
+			})
+			.then(() => {
+				this.props.alert.show("Successfully Signed Up!");
+			})
+			.catch((error) => this.setState({ error }));
 		e.preventDefault();
 	}
 
 	render() {
-		const { name, email, country, passwordOne, passwordTwo } = this.state;
+		const {
+			name,
+			email,
+			country,
+			passwordOne,
+			passwordTwo,
+			error,
+		} = this.state;
+		const isInvalid =
+			name === "" ||
+			email === "" ||
+			passwordOne === "" ||
+			passwordOne !== passwordTwo ||
+			country === "";
 		return (
 			<RegisterationContainer>
 				<form onSubmit={this.onHandleSubmit}>
@@ -91,7 +130,12 @@ class SignUpPage extends React.Component {
 						<i className="fas fa-key"></i>
 					</div>
 					<div className="form-group">
-						<button className="btn btn-submit">Get Started</button>
+						{error && <p className="error">{error.message}</p>}
+					</div>
+					<div className="form-group">
+						<button className="btn btn-submit" disabled={isInvalid}>
+							Get Started
+						</button>
 					</div>
 					<SignInLink />
 				</form>
@@ -99,5 +143,7 @@ class SignUpPage extends React.Component {
 		);
 	}
 }
+
+const SignUpPage = withRouter(withFirebase(withAlert()(SignUpFormBase)));
 
 export default SignUpPage;

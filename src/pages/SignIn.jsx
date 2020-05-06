@@ -1,18 +1,21 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /** @format */
 
 import React from "react";
-import { Link } from 'react-router-dom'
-import { ResetLink } from "./ForgetPassword";
+import { Link, withRouter } from "react-router-dom";
+import { withAlert } from "react-alert";
+import { withFirebase } from "./Firebase/index";
+import { ResetLink } from "./Components/ForgetPassword";
 import * as ROUTES from "../constants/Routes";
 import RegisterationContainer from "./RegisterationContainer";
 
 const INITIAL_STATE = {
 	email: "",
-	passwordOne: "",
+	password: "",
 	error: null,
 };
 
-class SignInPage extends React.Component {
+class SignInFormbase extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -28,16 +31,28 @@ class SignInPage extends React.Component {
 	}
 
 	onHandleSubmit(e) {
+		const { email, password } = this.state;
+		this.props.firebase.auth
+			.signInWithEmailAndPassword(email, password)
+			.then(() => {
+				this.setState({ ...INITIAL_STATE });
+				this.props.history.push(ROUTES.DASHBOARD);
+				this.props.alert.show('Successfully Signed in!')
+			})
+			
+			.then(() => { location.reload() })
+			.then(() => {setTimeout(this.props.alert.show('Successfully Signed in!'), 5000)})
+			.catch((error) => this.setState({ error }));
 		e.preventDefault();
 	}
 
 	render() {
-		const { email, passwordOne } = this.state;
+		const { email, password, error } = this.state;
+		const isInvalid = error === "" || password === "";
 		return (
 			<RegisterationContainer>
 				<form onSubmit={this.onHandleSubmit}>
 					<h2 className="text-center text-primary">Login</h2>
-
 					<div className="form-group">
 						<input
 							type="email"
@@ -52,15 +67,22 @@ class SignInPage extends React.Component {
 					<div className="form-group">
 						<input
 							type="password"
-							value={passwordOne}
-							name="passwordOne"
+							value={password}
+							name="password"
 							onChange={this.onHandleChange}
 							placeholder="Password"
 						/>
 						<i className="fas fa-key"></i>
 					</div>
 					<div className="form-group">
-						<button className="btn btn-submit">
+						{error && <p className="error">{error.message}</p>}
+					</div>
+					<div className="form-group">
+						<button
+							className="btn btn-submit"
+							type="submit"
+							disabled={isInvalid}
+						>
 							Sign In <i className="fas fa-sign-in-alt"></i>
 						</button>
 					</div>
@@ -83,5 +105,7 @@ const SignInLink = () => {
 };
 
 export { SignInLink };
+
+const SignInPage = withRouter(withFirebase(withAlert()(SignInFormbase)));
 
 export default SignInPage;

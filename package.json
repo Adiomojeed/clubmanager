@@ -35,9 +35,15 @@
 		"prettier": "^2.0.5"
 	},
 	"dependencies": {
+		"e": "0.0.4",
 		"entropy-string": "^4.2.0",
+		"firebase": "^7.14.2",
 		"node-sass": "^4.14.0",
+		"r": "0.0.5",
+		"re": "^0.1.4",
 		"react": "^16.13.1",
+		"react-alert": "^7.0.0",
+		"react-alert-template-basic": "^1.0.0",
 		"react-dom": "^16.13.1",
 		"react-router-dom": "^5.1.2"
 	}

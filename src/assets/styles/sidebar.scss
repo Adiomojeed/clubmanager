@@ -34,28 +34,29 @@
 		}
 		& > .nav-list {
 			padding-top: 0px;
-			
-			& > .nav-item {
-				list-style-type: none;
-				font-size: 0.7em;
-				color: $text-light;
-                width: 100%;
-                background-color: lighten($color: $bg-primary, $amount: 2);
-				border-bottom: 2px solid darken($color: $bg-primary, $amount: 5);
-				padding: 10px;
+
+			& > .sign-out {
+				background-color: lighten($color: $bg-primary, $amount: 2);
+				margin-top: 80px;
+				padding: 8px;
+				border: 0;
+				width: 100%;
+				color: #fff;
+				font-size: 1em;
+				&:focus {
+					outline: none;
+				}
 				& > P {
-					display: inline-block;
+					padding: 0px;
+					color: #fff;
+					font-size: .7em;
+					z-index: 100;
 				}
-            }
-            & > .sign-out {
-                margin-top: 120px;
-                & > P {
-					padding-left: 20px;
-				}
-            }
+			}
 		}
 		& > .avatar-block {
 			padding: 40px 20px 0 20px;
+			margin-bottom: 50px;
 			& > div {
 				display: flex;
 				justify-content: center;
@@ -67,12 +68,35 @@
 				}
 			}
 			& > h5 {
-				margin-top: 0;
+				margin: 0;
+			}
+			& > p {
+				font-size: .7em;
+				color: #fff;
+				text-align: center;
+				width: 100%;
+				line-height: 10px;
 			}
 		}
 	}
 }
 
+
+.nav-item {
+	background-color: lighten($color: $bg-primary, $amount: 2);
+	padding: 0 1px;
+	color: $text-light;
+	margin: -15px 0px;
+}
+.nav-text {
+	color: $text-light;
+	padding: 20px 0px;
+	font-size: 0.7em;
+}
+.nav-it {
+	background-color: gold;
+	color: green;
+}
 .sidebar__icon {
 	padding: 0 20px;
 }
@@ -148,8 +172,8 @@
 			color: darken($color: $grey-100, $amount: 10);
 			margin-right: 15px;
 			padding: 5px 10px;
-            border-radius: 10px;
-            cursor: pointer;
+			border-radius: 10px;
+			cursor: pointer;
 		}
 		& > i {
 			color: $text-primary;
@@ -178,7 +202,6 @@
 	.col-3 {
 		max-width: 100%;
 		flex: 0 0 20%;
-		//background-color: rgba(36, 34, 34, 0.5);
 		background-color: darken($color: $bg-primary, $amount: 5);
 		padding: 0;
 		width: 20%;
@@ -195,17 +218,16 @@
 				margin-top: 30px;
 				width: 100%;
 				padding-top: 0px;
-				& > .nav-item {
-					font-size: 0.7em;
-					padding: 5px;
-				}
+				display: block;
+				//& > .nav-item {
+				//	font-size: 0.7em;
+				//	padding: 5px;
+				//}
 			}
 			& > .avatar-block {
 				padding-top: 60px;
 			}
 		}
-	}
-	@keyframes nav {
 	}
 	.nav {
 		height: 70px;
@@ -215,5 +237,14 @@
 				display: none;
 			}
 		}
+	}
+	.nav-list {
+		padding-top: 100px;
+	}
+	.nav-items {
+		background-color: gold;
+		width: 100%;
+		list-style-type: none;
+		padding-left: 50px;
 	}
 }

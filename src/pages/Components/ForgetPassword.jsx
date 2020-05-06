@@ -1,10 +1,12 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /** @format */
 
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/images/logo.png";
-import * as ROUTES from "../constants/Routes";
-import RegisterationContainer from "./RegisterationContainer";
+import { withAlert } from 'react-alert'
+import * as ROUTES from "../../constants/Routes";
+import { withFirebase } from '../Firebase/index'
+import RegisterationContainer from "../RegisterationContainer";
 
 const INITIAL_STATE = {
 	email: "",
@@ -27,11 +29,17 @@ class ForgetPasswordPage extends React.Component {
 	}
 
 	onHandleSubmit(e) {
+		const { email } = this.state;
+		this.props.firebase.auth
+			.sendPasswordResetEmail(email)
+			.then(() => this.setState({ ...INITIAL_STATE }))
+			.then(() => {this.props.alert.show('Reset Link sent successfully!')})
+			.catch((error) => this.setState({ error }));
 		e.preventDefault();
 	}
 
 	render() {
-		const { email } = this.state;
+		const { email, error } = this.state;
 		return (
 			<RegisterationContainer>
 				<form onSubmit={this.onHandleSubmit}>
@@ -45,6 +53,9 @@ class ForgetPasswordPage extends React.Component {
 							placeholder="Email Address"
 						/>
 						<i className="fas fa-envelope"></i>
+					</div>
+					<div className="form-group">
+						{error && <p className="error">{error.message}</p>}
 					</div>
 					<div className="form-group">
 						<button className="btn btn-submit">
@@ -70,4 +81,4 @@ const ResetLink = () => {
 
 export { ResetLink };
 
-export default ForgetPasswordPage;
+export default withFirebase(withAlert()(ForgetPasswordPage));
