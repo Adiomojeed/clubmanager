@@ -35,24 +35,7 @@
 		& > .nav-list {
 			padding-top: 0px;
 
-			& > .sign-out {
-				background-color: lighten($color: $bg-primary, $amount: 2);
-				margin-top: 80px;
-				padding: 8px;
-				border: 0;
-				width: 100%;
-				color: #fff;
-				font-size: 1em;
-				&:focus {
-					outline: none;
-				}
-				& > P {
-					padding: 0px;
-					color: #fff;
-					font-size: .7em;
-					z-index: 100;
-				}
-			}
+
 		}
 		& > .avatar-block {
 			padding: 40px 20px 0 20px;
@@ -78,6 +61,26 @@
 				line-height: 10px;
 			}
 		}
+	}
+}
+
+.sign-out {
+	background-color: lighten($color: $bg-primary, $amount: 2);
+	margin-top: 80px;
+	padding: 8px;
+	border: 0;
+	width: 100%;
+	color: #fff;
+	font-size: 1em;
+	cursor: pointer;
+	&:focus {
+		outline: none;
+	}
+	& > P {
+		padding: 0px;
+		color: #fff;
+		font-size: .7em;
+		z-index: 100;
 	}
 }
 

@@ -18,11 +18,9 @@ class HomeBase extends React.Component {
 				.ref(`users/${authUser.uid}`)
 				.on("value", (snapshot) => {
 					const usersObject = snapshot.val();
-					console.log(usersObject);
 					const usersList = Object.keys(usersObject).map(
 						(x) => usersObject[x]
 					);
-					console.log(usersList);
 					this.setState({ users: usersList });
 				})
 		);

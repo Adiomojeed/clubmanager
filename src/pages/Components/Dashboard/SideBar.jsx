@@ -66,8 +66,8 @@ class SideBar extends React.Component {
 							</p>
 						</NavLink>
 					</div>
-					<SignOut />
 				</div>
+				<SignOut />
 			</div>
 		);
 	}

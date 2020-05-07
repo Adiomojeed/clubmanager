@@ -24,7 +24,6 @@ const withAuthentication = (Component) => {
 
 		componentWillUnmount () {
 			this.listener()
-			console.log('unmounted')
 		}
 
 		render() {

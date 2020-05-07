@@ -1,4 +1,13 @@
 node_modules
 .cache
 dist
+.firebase
+functions
+.firebaserc
+database.rules.json
+firebase.json
+firestore.indexes.json
+firestore.rules
+storage.rules
+index.html
 .env

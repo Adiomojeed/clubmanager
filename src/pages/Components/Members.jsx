@@ -1,6 +1,8 @@
 /** @format */
 
 import React from "react";
+import { withAlert } from "react-alert";
+import MoonLoader from "react-spinners/MoonLoader";
 import { withFirebase } from "../Firebase/index";
 import Male from "../../assets/images/male.png";
 import Female from "../../assets/images/female.png";
@@ -9,62 +11,97 @@ class MembersPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			loading: false,
 			users: [],
 		};
+		this.onHandleDelete = this.onHandleDelete.bind(this);
+	}
+
+	onHandleDelete(uid) {
+		this.props.firebase.auth.onAuthStateChanged((authUser) => {
+			this.props.firebase.db
+				.ref(`members/${authUser.uid}/${uid}`)
+				.remove();
+		});
+		this.props.alert.show("Member Deleted Successfully!");
+
+		if (this.state.users.length === 1) {
+			location.reload()
+		}
+
+		
 	}
 
 	componentDidMount() {
-		this.setState({ loading: true });
 		this.props.firebase.auth.onAuthStateChanged((authUser) =>
 			this.props.firebase.db
 				.ref(`members/${authUser.uid}`)
 				.on("value", (snapshot) => {
 					const usersObject = snapshot.val();
-					const usersList = Object.keys(usersObject).map(
-						(x) => usersObject[x]
-					);
-					this.setState({ users: usersList, loading: false });
+					const usersList = Object.keys(usersObject).map((x) => ({
+						...usersObject[x],
+						uid: x,
+					}));
+					this.setState({ users: usersList });
 				})
 		);
 	}
 
 	render() {
-        const { users } = this.state;
-        if (!users.length) {
-            return <h1>Loading...</h1>
-        }
+		const { users, filter } = this.state;
+		if (!users.length) {
+			return (
+				<div>
+					<MoonLoader
+					css="margin: 0 auto; margin-top: 20px"
+					size={50}
+					color={"#123abc"}
+					loading={this.state.loading}
+				/>
+				<h6 className="ml members--hero">No user found</h6>
+				</div>
+			);
+		}
+
 		return (
 			<React.Fragment>
 				<div className="col">
-					<h4 className="ml">Members</h4>
+					<h4 className="ml members--hero">Members</h4>
 				</div>
 				<div className="row">
 					{users.map((user) => (
 						<div className="col-lg-4 col-6 py-2" key={user.name}>
-							<div className="card shadow">
-								<div>
-                                    {user.gender === 'Male' ? <img src={Male} alt="" /> : <img src={Female} alt="" />}
-									<span>{user.name}</span>
+							<div className="card shadow-success">
+								<div className="header">
+									{user.gender === "Male" ? (
+										<img src={Male} alt="" />
+									) : (
+										<img src={Female} alt="" />
+									)}
+									<span id="open-modal">{user.name}</span>
+									<span
+										className="cancel"
+										value={user.uid}
+										onClick={() => {
+											this.onHandleDelete(user.uid);
+										}}
+									>
+										x
+									</span>
 								</div>
 								<p>
-									<i className="fas fa-envelope"></i>:{" "}
+									<i className="fas fa-envelope text-success"></i>{" "}
 									{user.mail}
 								</p>
-								<div>
+								<div className="body">
 									<p>
-										<i className="fas fa-laptop-code"></i>:{" "}
+										<i className="fas fa-laptop-code"></i>{" "}
 										{user.track}
 									</p>
 									<p>
-										<i className="fas fa-user"></i>:{" "}
-										{user.gender}
+										<i className="fas fa-mobile-alt text-success"></i>
+										{user.phone}
 									</p>
 								</div>
-								<p>
-									<i className="fas fa-mobile-alt"></i>:
-									{user.phone}
-								</p>
 							</div>
 						</div>
 					))}
@@ -74,4 +111,4 @@ class MembersPage extends React.Component {
 	}
 }
 
-export default withFirebase(MembersPage);
+export default withFirebase(withAlert()(MembersPage));
