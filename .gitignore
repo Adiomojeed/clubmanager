@@ -9,5 +9,4 @@ firebase.json
 firestore.indexes.json
 firestore.rules
 storage.rules
-index.html
 .env
