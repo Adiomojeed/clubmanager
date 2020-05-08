@@ -8,7 +8,7 @@
 		"plugin:jsx-a11y/recommended",
 		"plugin:react-hooks/recommended"
 	],
-	"plugins": ["prettier", "react", "import", "jsx-a11y", "react-hooks", "emotion"],
+	"plugins": ["prettier", "react", "import", "jsx-a11y", "react-hooks"],
 	"parserOptions": {
 		"ecmaVersion": 2020,
 		"sourceType": "module",

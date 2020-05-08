@@ -37,9 +37,7 @@ class SignInFormbase extends React.Component {
 			.then(() => {
 				this.setState({ ...INITIAL_STATE });
 				this.props.history.push(ROUTES.DASHBOARD);
-				this.props.alert.show('Successfully Signed in!')
 			})
-			
 			.then(() => { location.reload() })
 			.then(() => {setTimeout(this.props.alert.show('Successfully Signed in!'), 5000)})
 			.catch((error) => this.setState({ error }));

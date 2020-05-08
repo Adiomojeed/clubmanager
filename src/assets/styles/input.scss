@@ -30,6 +30,10 @@
 		color: darken($color: $grey-100, $amount: 10);
 		font-size: 0.8em;
 	}
+	& > small {
+		font-size: .6em;
+		margin: 0;
+	}
 }
 
 .error {

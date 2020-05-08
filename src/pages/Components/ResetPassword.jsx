@@ -51,7 +51,7 @@ class ResetPasswordPage extends React.Component {
 							value={passwordOne}
 							name="passwordOne"
 							onChange={this.onHandleChange}
-							placeholder="Password"
+							placeholder="New Password"
 						/>
 						<i className="fas fa-key"></i>
 					</div>

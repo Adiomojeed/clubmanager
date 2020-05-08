@@ -47,10 +47,19 @@ class AddMemberPage extends React.Component {
 
 	render() {
 		const { name, track, mail, phone, gender } = this.state;
+		const isInvalid =
+			name === "" ||
+			track === "" ||
+			mail === "" ||
+			phone === "" ||
+			gender === "";
 		return (
 			<div className="col justify-content-center align-items-center">
 				<form onSubmit={this.onHandleSubmit}>
 					<h3 className="text-center text-primary">Add Member</h3>
+					<div className="form-group">
+						<small>Ensure you fill all fields</small>
+					</div>
 					<div className="form-group">
 						<input
 							type="text"
@@ -112,7 +121,9 @@ class AddMemberPage extends React.Component {
 						<i className="fas fa-mobile-alt"></i>
 					</div>
 					<div className="form-group">
-						<button className="btn btn-submit">Add Member</button>
+						<button className="btn btn-submit" disabled={isInvalid}>
+							Add Member
+						</button>
 					</div>
 				</form>
 			</div>
