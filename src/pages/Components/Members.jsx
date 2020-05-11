@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /** @format */
 
 import React from "react";
@@ -25,6 +27,7 @@ class MembersPage extends React.Component {
 		this.props.alert.show("Member Deleted Successfully!");
 
 		if (this.state.users.length === 1) {
+			// eslint-disable-next-line no-restricted-globals
 			location.reload()
 		}
 
@@ -47,7 +50,7 @@ class MembersPage extends React.Component {
 	}
 
 	render() {
-		const { users, filter } = this.state;
+		const { users } = this.state;
 		if (!users.length) {
 			return (
 				<div>
@@ -57,7 +60,7 @@ class MembersPage extends React.Component {
 					color={"#123abc"}
 					loading={this.state.loading}
 				/>
-				<h6 className="ml members--hero">No user found</h6>
+				<h6 className="ml members--hero">No Member found</h6>
 				</div>
 			);
 		}

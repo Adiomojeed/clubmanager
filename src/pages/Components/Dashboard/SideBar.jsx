@@ -26,7 +26,7 @@ class SideBar extends React.Component {
 	}
 
 	render () {
-		const {user} = this.state
+		const {user} = this.state 
 		return (
 			<div className="siderow vh-100">
 				<div className="close">

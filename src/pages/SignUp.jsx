@@ -7,6 +7,7 @@ import RegisterationContainer from "./RegisterationContainer";
 import * as ROUTES from "../constants/Routes";
 import { SignInLink } from "./SignIn";
 import { withFirebase } from "./Firebase/index";
+import { Country } from "./Components/country";
 
 const INITIAL_STATE = {
 	name: "",
@@ -40,15 +41,14 @@ class SignUpFormBase extends React.Component {
 				this.props.firebase.db
 					.ref(`users/${authUser.user.uid}`)
 					.set({ name, country, email });
-				this.props.firebase.db
-					.ref(`members/${authUser.user.uid}`)
-					//.set({ name, country, email });
+				this.props.firebase.db.ref(`members/${authUser.user.uid}`);
 			})
 			.then(() => {
 				this.setState({ ...INITIAL_STATE });
 				this.props.history.push(ROUTES.DASHBOARD);
 			})
 			.then(() => {
+				// eslint-disable-next-line no-restricted-globals
 				location.reload();
 			})
 			.then(() => {
@@ -100,14 +100,20 @@ class SignUpFormBase extends React.Component {
 						<i className="fas fa-envelope"></i>
 					</div>
 					<div className="form-group">
-						<input
-							type="text"
-							value={country}
+						<select
 							name="country"
+							value={country}
 							onChange={this.onHandleChange}
-							placeholder="Country"
-						/>
-						<i className="fas fa-map-marker-alt"></i>
+							onBlur={this.onHandleChange}
+						>
+							<option value=''>Country</option>
+							{Country.map((item) => (
+								<option key={item.code} value={item.name}>
+									{item.name}
+								</option>
+							))}
+						</select>
+						
 					</div>
 					<div className="form-group">
 						<input
