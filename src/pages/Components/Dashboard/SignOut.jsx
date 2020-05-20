@@ -7,12 +7,12 @@ const SignOut = ({ firebase }) => {
 	return (
 		<React.Fragment>
 			<button type="button" className="sign-out" id="open-modal">
-				<p className="nav-text">SIGN OUT</p>
+				SIGN OUT
 			</button>
 			<div id="myModal" className="myModal">
 				<div className="modal-content">
 					<div className="headers">
-						<h3>Sign Out?</h3>
+						<h4>Sign Out?</h4>
 					</div>
 					<div className="bodys">
 						<button

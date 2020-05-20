@@ -1,59 +1,43 @@
 /** @format */
 
 .btn {
-	width: 250px;
-	height: 60px;
+	display: block;
+	width: 100%;
+	padding: 20px;
 	border: 3px;
 	background-color: $bg-primary;
 	border-radius: 40px;
 	font-size: 1em;
 	color: $text-light;
-    cursor: pointer;
-    outline: 0;
-	&:hover, &:focus {
-        background-color: darken($color: $bg-primary, $amount: 4);
-        outline: none;
+	cursor: pointer;
+	outline: 0;
+	&:hover,
+	&:focus {
+		background-color: darken($color: $bg-primary, $amount: 4);
+		outline: none;
 	}
 }
 
+.btn-sm {
+	width: 50%;
+}
+
 .btn-submit {
-	width: 350px;
-	height: 50px;
-    border-radius: 10px;
-    font-size: .8em;
-}
-
-@media screen and (min-width: 576px) {
-    .btn-submit {
-        width: 450px;
-        height: 60px;
-
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .btn {
-        width: 350px;
-        height: 70px;
-        border: 3px;
-        background-color: $bg-primary;
-        border-radius: 40px;
-        font-size: 1em;
-        color: $text-light;
-        cursor: pointer;
-        outline: 0;
-        &:hover {
-            background-color: darken($color: $bg-primary, $amount: 4);
-        }
-    }
-    .btn-submit {
-        width: 450px;
-        height: 60px;
-        border-radius: 10px;
-        font-size: .8em;
-    }
+	border-radius: 10px;
+	font-size: 0.8em;
 }
 
 @media screen and (min-width: 992px) {
-    
+	.btn {
+		padding: 25px;
+	}
+	.btn-submit {
+		padding: 20px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.btn-submit {
+		padding: 20px;
+	}
 }

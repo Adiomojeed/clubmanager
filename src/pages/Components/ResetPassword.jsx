@@ -1,12 +1,12 @@
 /** @format */
 
 import React from "react";
-import { withAlert } from 'react-alert'
-import { withFirebase } from '../Firebase/index'
+import { withAlert } from "react-alert";
+import { withFirebase } from "../Firebase/index";
 
 const INITIAL_STATE = {
-    passwordOne: '',
-    passwordTwo: '',
+	passwordOne: "",
+	passwordTwo: "",
 	error: null,
 };
 
@@ -26,13 +26,15 @@ class ResetPasswordPage extends React.Component {
 	}
 
 	onHandleSubmit(e) {
-        const { passwordOne } = this.state;
+		const { passwordOne } = this.state;
 		this.props.firebase.auth.currentUser
 			.updatePassword(passwordOne)
 			.then(() => {
 				this.setState({ ...INITIAL_STATE });
-            })
-            .then(() => {this.props.alert.show('Password changed successfully!')})
+			})
+			.then(() => {
+				this.props.alert.show("Password changed successfully!");
+			})
 			.catch((error) => {
 				this.setState({ error });
 			});
@@ -42,37 +44,43 @@ class ResetPasswordPage extends React.Component {
 	render() {
 		const { passwordOne, passwordTwo, error } = this.state;
 		return (
-			<div className="col justify-content-center align-items-center">
-				<form onSubmit={this.onHandleSubmit}>
-					<h3 className="text-center text-primary">Change Password</h3>
-					<div className="form-group">
-						<input
-							type="password"
-							value={passwordOne}
-							name="passwordOne"
-							onChange={this.onHandleChange}
-							placeholder="New Password"
-						/>
-						<i className="fas fa-key"></i>
-					</div>
+			<div className="row px-4 justify-content-center">
+				<div className="col col-md-6">
+					<form onSubmit={this.onHandleSubmit}>
+						<h3 className="text-center text-primary">
+							Change Password
+						</h3>
+						<div className="form-group">
+							<input
+								type="password"
+								value={passwordOne}
+								name="passwordOne"
+								onChange={this.onHandleChange}
+								placeholder="New Password"
+							/>
+							<i className="fas fa-key"></i>
+						</div>
 
-					<div className="form-group">
-						<input
-							type="password"
-							value={passwordTwo}
-							name="passwordTwo"
-							onChange={this.onHandleChange}
-							placeholder="Confirm Password"
-						/>
-						<i className="fas fa-key"></i>
-					</div>
-					<div className="form-group">
-						{error && <p className="error">{error.message}</p>}
-					</div>
-					<div className="form-group">
-						<button className="btn btn-submit">Change Password</button>
-					</div>
-				</form>
+						<div className="form-group">
+							<input
+								type="password"
+								value={passwordTwo}
+								name="passwordTwo"
+								onChange={this.onHandleChange}
+								placeholder="Confirm Password"
+							/>
+							<i className="fas fa-key"></i>
+						</div>
+						<div className="form-group">
+							{error && <p className="error">{error.message}</p>}
+						</div>
+						<div className="form-group">
+							<button className="btn btn-submit">
+								Change Password
+							</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		);
 	}

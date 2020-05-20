@@ -2,16 +2,16 @@
 
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { withFirebase } from '../../Firebase/index'
+import { withFirebase } from "../../Firebase/index";
 import Avatar from "../../../assets/images/male.png";
-import SignOut from './SignOut'
+import SignOut from "./SignOut";
 
 class SideBar extends React.Component {
-	constructor (props) {
-		super (props)
+	constructor(props) {
+		super(props);
 		this.state = {
-			user: []
-		}
+			user: [],
+		};
 	}
 
 	componentDidMount() {
@@ -20,57 +20,59 @@ class SideBar extends React.Component {
 				.ref(`users/${authUser.uid}`)
 				.on("value", (snapshot) => {
 					const usersObject = snapshot.val();
-					this.setState({ user: usersObject});
+					this.setState({ user: usersObject });
 				})
 		);
 	}
 
-	render () {
-		const {user} = this.state 
+	render() {
+		const { user } = this.state;
 		return (
-			<div className="siderow vh-100">
+			<div className="siderow">
 				<div className="close">
 					<i className="fas fa-times text-light" id="close"></i>
 				</div>
+
 				<div className="avatar-block">
-					<div>
+					<div className="flex">
 						<img src={Avatar} className="avatar" alt="" />
 					</div>
-					<h5 className="text-light text-center">
-						DSC {user.name}
-					</h5>
+					<h6 className="text-light text-center">DSC {user.name}</h6>
 					<p>{user.email}</p>
-					<p><i className="fas fa-flag"></i> {user.country}</p>
+					<p>
+						<i className="fas fa-flag"></i> {user.country}
+					</p>
 				</div>
-				<div className="nav-list">
-					<div className="nav-item">
-						<NavLink to="/dashboard" activeClassName="nav-it">
-							<p className="nav-text">
-								<i className="fas fa-home sidebar__icon"></i>HOME
-							</p>
+				<ul className="list">
+					<li>
+						<NavLink exact to="/dashboard" activeClassName="active">
+							<i className="fas fa-home"></i>HOME
 						</NavLink>
-					</div>
-					<div className="nav-item">
-						<NavLink to="/dashboard/members" activeClassName="nav-it">
-							<p className="nav-text">
-								<i className="fas fa-users sidebar__icon"></i>
-								MEMBERS
-							</p>
+					</li>
+					<li>
+						<NavLink
+							to="/dashboard/members"
+							activeClassName="active"
+						>
+							<i className="fas fa-users"></i>
+							MEMBERS
 						</NavLink>
-					</div>
-					<div className="nav-item">
-						<NavLink to="/dashboard/addmember" activeClassName="nav-it">
-							<p className="nav-text">
-								<i className="fas fa-user-plus sidebar__icon"></i>
-								ADD MEMBERS
-							</p>
+					</li>
+					<li>
+						<NavLink
+							to="/dashboard/addmember"
+							activeClassName="active"
+						>
+							<i className="fas fa-user-plus"></i>
+							ADD MEMBERS
 						</NavLink>
-					</div>
-				</div>
+					</li>
+				</ul>
+
 				<SignOut />
 			</div>
 		);
 	}
-};
+}
 
 export default withFirebase(SideBar);

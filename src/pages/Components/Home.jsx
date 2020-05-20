@@ -1,15 +1,15 @@
 /** @format */
 
 import React from "react";
-import { withFirebase } from '../Firebase/index'
+import { withFirebase } from "../Firebase/index";
 import { withAuthorization } from "./Session/index";
 
 class HomeBase extends React.Component {
-	constructor (props) {
-		super (props)
+	constructor(props) {
+		super(props);
 		this.state = {
-			user: []
-		}
+			user: [],
+		};
 	}
 
 	componentDidMount() {
@@ -29,12 +29,10 @@ class HomeBase extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<div className="col">
-					<h5 className="ml">Welcome to your dashboard !!!</h5>
-				</div>
-				<div className="row">
-					<div className="col-sm-6 col-4 py-2">
-						<div className="benefits-right shadow">
+				<h5 className="px-2">Welcome to your dashboard !!!</h5>
+				<div className="row px-2">
+					<div className="col col-md-6 ">
+						<div className="benefits-card shadow">
 							<i className="fab fa-accessible-icon text-error"></i>
 							<h4>Accessibility</h4>
 							<p>
@@ -44,8 +42,8 @@ class HomeBase extends React.Component {
 							</p>
 						</div>
 					</div>
-					<div className="col-sm-6 mx col-4 py-2">
-						<div className="benefits-right shadow">
+					<div className="col mx col-md-6 py-2">
+						<div className="benefits-card shadow">
 							<i className="fas fa-shield-alt text-success"></i>
 							<h4>Security</h4>
 							<p>
@@ -55,8 +53,8 @@ class HomeBase extends React.Component {
 							</p>
 						</div>
 					</div>
-					<div className="col-sm-6 col-4 py-2">
-						<div className="benefits-right shadow">
+					<div className="col col-md-6 py-2">
+						<div className="benefits-card shadow">
 							<i className="fas fa-check-double text-warning"></i>
 							<h4>Ease of Access</h4>
 							<p>
@@ -74,6 +72,6 @@ class HomeBase extends React.Component {
 
 const condition = (authUser) => authUser !== null;
 
-const Home = withFirebase(HomeBase)
+const Home = withFirebase(HomeBase);
 
 export default withAuthorization(condition)(Home);

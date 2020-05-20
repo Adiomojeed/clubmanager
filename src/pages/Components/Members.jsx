@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /** @format */
 
@@ -28,10 +29,8 @@ class MembersPage extends React.Component {
 
 		if (this.state.users.length === 1) {
 			// eslint-disable-next-line no-restricted-globals
-			location.reload()
+			location.reload();
 		}
-
-		
 	}
 
 	componentDidMount() {
@@ -55,24 +54,35 @@ class MembersPage extends React.Component {
 			return (
 				<div>
 					<MoonLoader
-					css="margin: 0 auto; margin-top: 20px"
-					size={50}
-					color={"#123abc"}
-					loading={this.state.loading}
-				/>
-				<h6 className="ml members--hero">No Member found</h6>
+						css="margin: 0 auto; margin-top: 20px"
+						size={50}
+						color={"#123abc"}
+						loading={this.state.loading}
+					/>
+					<h6 className="ml members--hero">No Member found</h6>
 				</div>
 			);
 		}
 
 		return (
 			<React.Fragment>
-				<div className="col">
-					<h4 className="ml members--hero">Members</h4>
-				</div>
+				<h4 className="px-2 text-primary">Members</h4>
+
 				<div className="row">
 					{users.map((user) => (
-						<div className="col-lg-4 col-6 py-2" key={user.name}>
+						<div
+							className="col-6 col-md-4 col-xl-3"
+							key={user.name}
+						>
+							<span
+								className="cancel"
+								value={user.uid}
+								onClick={() => {
+									this.onHandleDelete(user.uid);
+								}}
+							>
+								x
+							</span>
 							<div className="card shadow-success">
 								<div className="header">
 									{user.gender === "Male" ? (
@@ -80,16 +90,8 @@ class MembersPage extends React.Component {
 									) : (
 										<img src={Female} alt="" />
 									)}
-									<span id="open-modal">{user.name}</span>
-									<span
-										className="cancel"
-										value={user.uid}
-										onClick={() => {
-											this.onHandleDelete(user.uid);
-										}}
-									>
-										x
-									</span>
+
+									<small id="open-modal">{user.name}</small>
 								</div>
 								<p>
 									<i className="fas fa-envelope text-success"></i>{" "}

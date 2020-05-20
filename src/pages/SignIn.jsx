@@ -1,4 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+/**
+ * /* eslint-disable jsx-a11y/anchor-is-valid
+ *
+ * @format
+ */
+
 /** @format */
 
 import React from "react";
@@ -38,8 +44,16 @@ class SignInFormbase extends React.Component {
 				this.setState({ ...INITIAL_STATE });
 				this.props.history.push(ROUTES.DASHBOARD);
 			})
-			.then(() => { location.reload() })
-			.then(() => {setTimeout(this.props.alert.show('Successfully Signed in!'), 5000)})
+			.then(() => {
+				// eslint-disable-next-line no-restricted-globals
+				location.reload();
+			})
+			.then(() => {
+				setTimeout(
+					this.props.alert.show("Successfully Signed in!"),
+					5000
+				);
+			})
 			.catch((error) => this.setState({ error }));
 		e.preventDefault();
 	}

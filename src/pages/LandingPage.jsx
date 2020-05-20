@@ -8,20 +8,24 @@ import * as ROUTES from "../constants/Routes";
 const LandingPage = () => {
 	return (
 		<div className="container">
-			<div className="row">
-				<div className="col vh-100 hero-bg justify-content-center align-items-center">
+			<div className="row hero-bg">
+				<div className="col col-md-8 offset-md-2 col-lg-6 offset-lg-3 vh-100 d-flex justify-content-center align-items-center">
 					<div>
-						<img src={Logo} alt="" className="logo" />
-						<h1>DSC Club Manager</h1>
-						<p>
+						<div className="flex">
+							<img src={Logo} alt="" className="logo" />
+						</div>
+						<h1 className="text-center">DSC Club Manager</h1>
+						<h5 className="text-center font-weight-normal px-2">
 							A monitoring application to help DSC Local Chapters
 							monitor their clubs. It helps to keep track of the
 							members, their role played and contributions.
-						</p>
+						</h5>
 						<Link to={ROUTES.SIGN_UP}>
-							<button className="btn btn-primary">
-								Get Started
-							</button>
+							<div className="flex w-100">
+								<button className="btn btn-sm tn-primary">
+									Get Started
+								</button>
+							</div>
 						</Link>
 					</div>
 				</div>

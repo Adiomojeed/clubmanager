@@ -106,14 +106,14 @@ class SignUpFormBase extends React.Component {
 							onChange={this.onHandleChange}
 							onBlur={this.onHandleChange}
 						>
-							<option value=''>Country</option>
+							<option value="">Country</option>
 							{Country.map((item) => (
 								<option key={item.code} value={item.name}>
 									{item.name}
 								</option>
 							))}
 						</select>
-						
+						<i className="fas fa-envelope"></i>
 					</div>
 					<div className="form-group">
 						<input
@@ -143,6 +143,7 @@ class SignUpFormBase extends React.Component {
 							Get Started
 						</button>
 					</div>
+
 					<SignInLink />
 				</form>
 			</RegisterationContainer>

@@ -5,7 +5,7 @@ const open = document.querySelector("#open");
 const nav = document.getElementById("nav");
 const close = document.querySelector("#close");
 const siderow = document.querySelector(".siderow");
-const navitem = document.querySelector(".nav-list");
+const navitem = document.querySelector(".list");
 const mq = window.matchMedia("(min-width: 992px)");
 const btn = document.querySelector("#open-modal");
 const modal = document.querySelector("#myModal");
@@ -34,20 +34,16 @@ window.addEventListener("click", function (e) {
 	}
 });
 open.addEventListener("click", function () {
-	nav.classList.add("animenav");
-	nav.style.display = "block";
-	siderow.classList.add("siderownav");
+	setTimeout(function () {
+		nav.style.display = "block";
+		siderow.style.marginLeft = "0%";
+	}, 200);
 });
 
 close.addEventListener("click", function () {
-	nav.classList.remove("animenav");
-	siderow.classList.remove("siderownav");
-	nav.classList.add("closeanime");
-	siderow.classList.add("closesiderow");
-	setTimeout(() => {
-		nav.classList.remove("closeanime");
-		siderow.classList.remove("closesiderow");
+	setTimeout(function () {
 		nav.style.display = "none";
+		siderow.style.marginLeft = "-50%";
 	}, 500);
 });
 

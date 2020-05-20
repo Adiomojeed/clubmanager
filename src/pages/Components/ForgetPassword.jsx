@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+
 /** @format */
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { withAlert } from 'react-alert'
+import { withAlert } from "react-alert";
 import * as ROUTES from "../../constants/Routes";
-import { withFirebase } from '../Firebase/index'
+import { withFirebase } from "../Firebase/index";
 import RegisterationContainer from "../RegisterationContainer";
 
 const INITIAL_STATE = {
@@ -33,7 +34,9 @@ class ForgetPasswordPage extends React.Component {
 		this.props.firebase.auth
 			.sendPasswordResetEmail(email)
 			.then(() => this.setState({ ...INITIAL_STATE }))
-			.then(() => {this.props.alert.show('Reset Link sent successfully!')})
+			.then(() => {
+				this.props.alert.show("Reset Link sent successfully!");
+			})
 			.catch((error) => this.setState({ error }));
 		e.preventDefault();
 	}
